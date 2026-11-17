@@ -1,0 +1,4 @@
+interface:
+  display_name: "非凡之爱人物替换"
+  short_description: "选择RH或贞贞AI，按两张图三路换角复刻非凡之爱，交付对齐配乐与实扣账本。"
+  default_prompt: "使用 $no-ordinary-love-character-replacement 为非凡之爱换人物；未指定时先询问RH或贞贞AI，复用已配置音乐，缺少时先对齐本地音乐，交付成片、独立音频和包含返工的实际每秒成本。"

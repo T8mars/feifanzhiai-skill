@@ -1,0 +1,53 @@
+# Credentials and machine-specific configuration
+.env
+.env.*
+*[Aa][Pp][Ii]_[Kk][Ee][Yy]*
+*[Aa][Pp][Ii][Kk][Ee][Yy]*
+*.key
+*.pem
+*.pfx
+*.p12
+secrets/
+private/
+provider.json
+delivery_audio.json
+delivery_visual.json
+
+# Production inputs, state and outputs do not belong in the skill repository
+CURRENT.md
+rh_state*
+zhenzhen_state*
+*.lock
+*.log
+*.part
+制作分析/
+完成分段/
+补齐生成用/
+替换用参考图/
+提示词/
+配乐/
+candidates/
+ffmpeg/
+*.mp4
+*.mov
+*.mkv
+*.wav
+*.mp3
+*.m4a
+*.flac
+*.zip
+*.7z
+
+# Roadmaps stay private, regardless of letter case
+[Rr][Oo][Aa][Dd][Mm][Aa][Pp].[Mm][Dd]
+
+# Local Python/editor artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

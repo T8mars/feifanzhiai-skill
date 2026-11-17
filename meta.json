@@ -1,0 +1,63 @@
+{
+  "skill_version": "3.0.1",
+  "updated": "2026-11-17",
+  "display_name": "非凡之爱人物替换",
+  "source_package": "D:/全自动生成非凡之爱",
+  "source_author": "antrofrog",
+  "workflow_source": "wuwukasi,https://space.bilibili.com/670281046",
+  "optimization_author": "T8star",
+  "frames": 1417,
+  "fps": 24,
+  "default_audio": {
+    "asset": "assets/非凡之爱_新配乐_已对齐.wav",
+    "original_asset": "assets/11月17日.wav",
+    "sha256": "e27b0dc6a9a9e4f700168b0fc59cd6cdc7db6c1c0cd025ac6171a03d276e2f28",
+    "start_seconds": 0,
+    "alignment": {
+      "video_frames": 1417,
+      "fps": 24,
+      "video_seconds": 59.041666666666664,
+      "audio_sample_frames": 2603738,
+      "sample_rate": 44100,
+      "audio_seconds": 59.04167800453515,
+      "timing_error_seconds": 1.1337868485838953e-05
+    },
+    "bundled_in_public_repository": false
+  },
+  "runtime_install": "offline bootstrap into work copy; original package retained",
+  "private_keys_in_skill": false,
+  "providers": {
+    "runninghub": "rh_batch.py",
+    "zhenzhen_ai": "zhenzhen_batch.py"
+  },
+  "new_run_provider_choice": "ask RH or ZhenzhenAI unless user explicitly chose; resume preserves selection",
+  "zhenzhen_model": "minimax-h3-comfyui-charswap",
+  "cost_policy": "settled task usage / all measured generated seconds incl padding, retries and rejected candidates",
+  "publication": {
+    "repository": "https://github.com/T8mars/feifanzhiai-skill",
+    "scope": "no-ordinary-love-character-replacement only",
+    "public_media_policy": "No source footage, third-party music, character references or generated production files; configure audio locally.",
+    "excluded": [
+      "API keys",
+      "private provider configuration",
+      "task state",
+      "production logs",
+      "ROADMAP.MD"
+    ]
+  },
+  "quality_review": {
+    "runtime": "quality_review.py",
+    "record": "制作分析/candidate_reviews.json",
+    "schema_version": 1,
+    "enforced_by_final_assembler": true,
+    "semantic_detector": false,
+    "binding": [
+      "candidate_sha256",
+      "source_sha256",
+      "reference_sha256",
+      "keep_frames"
+    ],
+    "upgrade_note": "Existing selections need actual joint review records before final assembly; generation state and old videos remain intact."
+  },
+  "distribution": "public code-only edition; prepare local audio before bootstrap"
+}
