@@ -1,8 +1,24 @@
 # 非凡之爱人物替换 · No Ordinary Love
 
+## 调用入口与优惠
+
+| 平台 | 入口 | 优惠 |
+| --- | --- | --- |
+| 贞贞 AI | [贞贞 AI 调用](https://www.zzai.app) | 免费 GPT Image 2.6 |
+| RunningHub | [国内站](https://www.runninghub.cn?inviteCode=kol01-rh099) · [国际站](https://www.runninghub.ai?inviteCode=rh-v1121) | 每日 3 次免费 H3 及优惠券 |
+| 晨羽 | [晨羽调用](https://www.chenyu.cn/console/login?invitationCode=NGT5S4) | T8 专属优惠券，见下表 |
+
+| 晨羽优惠 | 数量或领取条件 | 券码 |
+| --- | --- | --- |
+| 0.1 = 5 | 300 张 | `W6TGFF` |
+| 30 = 45 | 300 张 | `T8AIGC` |
+| 50 = 100 | 每位粉丝均可领取，每个账号限领一次 | `50VS50` |
+
+更多镜像陆续更新，可搜索 **t8star**。
+
 **简体中文** | [English](README.en.md)
 
-> 选择 **RunningHub（RH）** 渠道时，需要自己的 RH 账号、API Key 与可用余额：[国际站注册](https://www.runninghub.ai/?inviteCode=rh-v1121) · [中国站注册](https://www.runninghub.cn/?inviteCode=rh-v1121)。也支持使用独立 Key 的[贞贞 AI 渠道](https://api.seedance.nz/sign-up?aff=5f4w)。注册及安装技能本身不会提交生成任务。
+> 选择 **RunningHub（RH）** 渠道时，需要自己的 RH 账号、API Key 与可用余额：[国际站注册](https://www.runninghub.ai/?inviteCode=rh-v1121) · [中国站注册](https://www.runninghub.cn?inviteCode=kol01-rh099)。也支持使用独立 Key 的[贞贞 AI 渠道](https://api.seedance.nz/sign-up?aff=5f4w)。注册及安装技能本身不会提交生成任务。
 
 将两张人物参考图映射到《非凡之爱》固定原片的两个动作角色，保留原片动作、镜头、场景和节奏，完成分段生成、候选修复、逐帧复核、配乐对齐与最终合片。
 

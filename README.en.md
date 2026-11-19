@@ -1,8 +1,24 @@
 # No Ordinary Love · Character Replacement Skill
 
+## Service links and offers
+
+| Service | Access | Offer |
+| --- | --- | --- |
+| Zhenzhen AI | [Open Zhenzhen AI](https://www.zzai.app) | Free GPT Image 2.6 |
+| RunningHub | [Mainland China](https://www.runninghub.cn?inviteCode=kol01-rh099) · [International](https://www.runninghub.ai?inviteCode=rh-v1121) | Three free H3 runs per day, plus coupons |
+| Chenyu | [Open Chenyu](https://www.chenyu.cn/console/login?invitationCode=NGT5S4) | T8-exclusive coupons listed below |
+
+| Chenyu offer | Availability | Coupon code |
+| --- | --- | --- |
+| 0.1 = 5 | 300 coupons | `W6TGFF` |
+| 30 = 45 | 300 coupons | `T8AIGC` |
+| 50 = 100 | Available to every fan, once per account | `50VS50` |
+
+Search for **t8star** to find new mirror sites as they are added.
+
 [简体中文](README.md) | **English**
 
-> The **RunningHub (RH)** channel requires your own account, API key and available credits: [International site](https://www.runninghub.ai/?inviteCode=rh-v1121) · [China site](https://www.runninghub.cn/?inviteCode=rh-v1121). Alternatively, use the [Zhenzhen AI channel](https://api.seedance.nz/sign-up?aff=5f4w) with a separate key. Registering or installing this skill does not submit generation jobs.
+> The **RunningHub (RH)** channel requires your own account, API key and available credits: [International site](https://www.runninghub.ai/?inviteCode=rh-v1121) · [China site](https://www.runninghub.cn?inviteCode=kol01-rh099). Alternatively, use the [Zhenzhen AI channel](https://api.seedance.nz/sign-up?aff=5f4w) with a separate key. Registering or installing this skill does not submit generation jobs.
 
 Replace the two action roles in the fixed *No Ordinary Love* template using two character reference images. Preserve the source choreography, camera, scene and timing while managing generation, repair candidates, visual review, soundtrack alignment and final assembly.
 
