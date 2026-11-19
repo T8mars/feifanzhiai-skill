@@ -10,14 +10,25 @@ This repository is a skill for agents that support `SKILL.md`, with executable P
 
 | Item | Details |
 | --- | --- |
-| Skill version | 3.0.1 |
+| Skill version | 3.1.0 |
 | Invocation | `$no-ordinary-love-character-replacement` |
 | Chinese display name | 非凡之爱人物替换 |
 | Template | 19 segments, 1,417 retained frames, 24 fps, approximately 59.04 seconds |
-| Providers | RunningHub; Zhenzhen AI `minimax-h3-comfyui-charswap` |
-| Scheduling | At most 3 generation jobs for this project; shot-based segments with a 10-second input limit, including padding |
+| Providers | RunningHub; Zhenzhen AI `minimax-h3-comfyui-charswap` · Chenyu Workflow |
+| Scheduling | One named shot at a time on Chenyu, up to 3 jobs on the other cloud channels; shot-based segments with a 10-second input limit, including padding |
 | Included | Skill instructions, runtime scripts, repair guidance and offline tests |
 | Required locally | Original source package, two reference images, soundtrack, your credentials and FFmpeg |
+
+## Run one shot with Chenyu
+
+Prepare the work copy, motion clip, reference images, shot prompt and local music. To try the two-character shot 015, substitute your own paths:
+
+```powershell
+python SKILL_DIR/scripts/bootstrap_runtime.py --project WORK_DIR --apply --provider chenyu --key-file PRIVATE_KEY_FILE
+python WORK_DIR/chenyu_workflow.py 015
+```
+
+Keep the key file outside the skill and work copy. The runner uploads each input, binds the references in shot order, pins the published revision and saves the order. Repeat the same command to resume. The result is `WORK_DIR/完成分段/015.mp4`. Shot 015 returned 73 frames at 24 fps in the verified trial. Read the settled amount in the unit returned by the platform. [Chenyu Workflow API](https://chenyu.mintlify.site/api-reference/workflow/introduction)
 
 ## Features
 
@@ -42,7 +53,7 @@ The script validates **inspection records and their file bindings**. It does not
 2. **Two character images.** Image 1 maps to source action role 1 and image 2 to role 2 unless you request a swap. References remain read-only. The agent configures each single-person or two-person task according to the frame table.
 3. **Local soundtrack.** The public repository does not include footage, music, character references or production outputs. Supply audio you are entitled to use, long enough for the approximately 59.04-second video.
 4. **Runtime.** Windows and Python 3.10+ are recommended. Install `requirements.txt`. Use the source package's portable FFmpeg/ffprobe or executables available on PATH.
-5. **Your own credentials.** Choose RH or Zhenzhen AI and store the key in a private local file. A new character run confirms the provider; a resumed project keeps its existing provider.
+5. **Your own credentials.** Choose RH, Zhenzhen AI or Chenyu and store the key in a private local file. A new character run confirms the provider; a resumed project keeps its existing provider.
 
 ## Installation
 
@@ -119,7 +130,7 @@ python zhenzhen_batch.py quote 003 004 015
 python zhenzhen_batch.py run 003 004 015
 ```
 
-The usual identity trials are 003/004/015. Long skirts, hair and other risks may change the trial selection. Do not run both providers or multiple three-worker schedulers in one project. Read existing state and locks before resuming. RH uses `status`/`download` for existing jobs; Zhenzhen AI resumes through `run`.
+The usual identity trials are 003/004/015. Long skirts, hair and other risks may change the trial selection. Do not run multiple providers or multiple three-worker schedulers in one project. Read existing state and locks before resuming. RH uses `status`/`download` for existing jobs; Zhenzhen AI resumes through `run`.
 
 ### 4. Review and assemble
 

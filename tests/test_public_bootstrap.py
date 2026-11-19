@@ -43,6 +43,22 @@ class PublicBootstrap(unittest.TestCase):
         after = {str(p.relative_to(self.root)): p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
         self.assertEqual(before, after)
 
+    def test_chenyu_installs_its_runner_and_private_key_path_only(self):
+        name = 'chenyu_workflow.py'
+        (self.skill/'scripts/runtime'/name).write_text('# fixture', encoding='utf8')
+        (self.root/'delivery_audio.json').write_text('{}', encoding='utf8')
+        key_file=self.root.parent/'outside.key'
+        key_file.write_text('placeholder-fixture',encoding='utf8')
+        args=['bootstrap_runtime.py','--project',str(self.root),'--apply','--provider','chenyu','--key-file',str(key_file)]
+        with patch.object(b,'SKILL',self.skill),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()):
+            b.main()
+        config=json.loads((self.root/'provider.json').read_text(encoding='utf8'))
+        self.assertEqual(config['workflow_id'],'wf_04a30714468c59fd78f5')
+        self.assertEqual(config['api_key_file'],str(key_file.resolve()))
+        self.assertNotIn('placeholder-fixture',json.dumps(config))
+        self.assertTrue((self.root/name).is_file())
+        self.assertEqual(config['max_concurrency'],1)
+
     def test_existing_local_music_and_task_state_survive_public_install(self):
         preserved = {'delivery_audio.json': b'{"path":"local.wav"}', 'rh_state.json': b'{"tasks":{}}', 'api_key.txt': b'offline-test-placeholder', 'local.wav': b'local audio fixture'}
         for name, data in preserved.items():

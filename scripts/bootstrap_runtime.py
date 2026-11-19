@@ -6,7 +6,15 @@ SKILL=Path(__file__).resolve().parent.parent
 ORIGINAL=Path('D:/全自动生成非凡之爱').resolve()
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--project',required=True,type=Path);p.add_argument('--apply',action='store_true');p.add_argument('--set-default-audio',action='store_true');p.add_argument('--provider',choices=['runninghub','zhenzhen_ai']);p.add_argument('--key-file',type=Path);args=p.parse_args();root=args.project.resolve()
+    p=argparse.ArgumentParser();p.add_argument('--project',required=True,type=Path);p.add_argument('--apply',action='store_true');p.add_argument('--set-default-audio',action='store_true');p.add_argument('--provider',choices=['runninghub','zhenzhen_ai','chenyu']);p.add_argument('--key-file',type=Path);args=p.parse_args();root=args.project.resolve()
+    if args.apply and (root/'chenyu_workflow.py').is_file() and root != ORIGINAL and ORIGINAL not in root.parents:
+        from runtime.chenyu_workflow import project_lock
+        with project_lock(root):
+            return install(args, root)
+    return install(args, root)
+
+
+def install(args, root):
     if root==ORIGINAL or root==SKILL or ORIGINAL in root.parents:raise SystemExit('请使用独立工作副本，不能改写D盘原包。')
     for name in ['LICENSE.txt','补齐生成用/原始帧数.txt','补齐生成用/补齐后帧数.txt']:
         if not (root/name).is_file():raise SystemExit('工作副本缺少：'+name)
@@ -20,7 +28,17 @@ def main():
     old_provider=json.loads((root/'provider.json').read_text(encoding='utf-8')) if (root/'provider.json').exists() else {}
     if args.provider and old_provider.get('provider') not in [None,args.provider]:raise SystemExit('更换渠道请建立新工作副本，避免混用任务与费用。')
     if args.provider=='zhenzhen_ai' and not (args.key_file or old_provider.get('api_key_file')):raise SystemExit('贞贞AI请用--key-file引用本机私有文件，不把Key写进参数。')
+    selected = args.provider or old_provider.get('provider')
+    if selected == 'chenyu':
+        key_path = args.key_file or old_provider.get('api_key_file')
+        if not key_path:
+            raise SystemExit('晨羽渠道需要 --key-file 指向本机私有文件。')
+        key_path = Path(key_path).resolve()
+        if not key_path.is_file() or any(key_path.is_relative_to(folder) for folder in (root, SKILL, ORIGINAL)):
+            raise SystemExit('晨羽 Key 文件必须存在，并放在技能和制作目录之外。')
     names=['rh_batch.py','zhenzhen_batch.py','assemble.py','audio_delivery.py','inspect_media.py','repair_scheduler.py','quality_review.py']
+    if selected == 'chenyu':
+        names.append('chenyu_workflow.py')
     plan={'project':str(root),'runtime_files':names,'provider':args.provider or old_provider.get('provider'),'install_default_music':not (root/'delivery_audio.json').exists() or args.set_default_audio,'apply':args.apply}
     print(json.dumps(plan,ensure_ascii=False),flush=True)
     if not args.apply:return
@@ -43,6 +61,9 @@ def main():
         manifest=root/'provider.json'
         if manifest.exists():shutil.copy2(manifest,backup/manifest.name)
         cfg=dict(old_provider,provider=args.provider,max_concurrency=3)
+        if args.provider == 'chenyu':
+            cfg.update(workflow_id='wf_04a30714468c59fd78f5', api_key_file=str(key_path),
+                       max_concurrency=1)
         if args.provider=='zhenzhen_ai':
             cfg.update(base_url='https://api.seedance.nz',model='minimax-h3-comfyui-charswap',resolution='1088p',ratio='16:9',output_fps=24,frames_instead_of_seconds=True)
             if args.key_file:cfg['api_key_file']=str(args.key_file.resolve())

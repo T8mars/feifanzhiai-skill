@@ -1,5 +1,7 @@
 {
-  "providers": ["runninghub", "zhenzhen_ai"],
+  "providers": ["runninghub", "zhenzhen_ai", "chenyu"],
+  "chenyu_single_named_shot_with_pinned_revision": true,
+  "chenyu_idempotent_resume": true,
   "new_reference_requires_provider_choice_unless_explicit": true,
   "resume_preserves_provider_and_task_ids": true,
   "own_generation_concurrency": 3,

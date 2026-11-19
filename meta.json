@@ -1,6 +1,6 @@
 {
-  "skill_version": "3.0.1",
-  "updated": "2026-11-17",
+  "skill_version": "3.1.0",
+  "updated": "2026-11-19",
   "display_name": "非凡之爱人物替换",
   "source_package": "D:/全自动生成非凡之爱",
   "source_author": "antrofrog",
@@ -28,9 +28,10 @@
   "private_keys_in_skill": false,
   "providers": {
     "runninghub": "rh_batch.py",
-    "zhenzhen_ai": "zhenzhen_batch.py"
+    "zhenzhen_ai": "zhenzhen_batch.py",
+    "chenyu": "chenyu_workflow.py"
   },
-  "new_run_provider_choice": "ask RH or ZhenzhenAI unless user explicitly chose; resume preserves selection",
+  "new_run_provider_choice": "ask RunningHub, Zhenzhen AI or Chenyu unless user explicitly chose; resume preserves selection",
   "zhenzhen_model": "minimax-h3-comfyui-charswap",
   "cost_policy": "settled task usage / all measured generated seconds incl padding, retries and rejected candidates",
   "publication": {
